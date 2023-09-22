@@ -40,7 +40,7 @@ function getComputerChoice() {
     //Correct case of playerSelection
     //return the correct string corresponding to the winner
 function playRound(playerSelection, computerSelection) {
-    let playerSelectionCased = correctCase(playerSelection);
+    playerSelection = correctCase(playerSelection);
     if (playerSelection===computerSelection) {
                     return "Tie Game! Try Again";
     } else if (playerSelection==='Rock' && computerSelection==='Scissors' ||
@@ -69,7 +69,7 @@ function playRound(playerSelection, computerSelection) {
 
 //Call game function
 
-//console.log("Hello World");
+//console.log(playRound('SCISSors', getComputerChoice()));
     </script>
 
 </html>

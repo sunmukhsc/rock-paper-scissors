@@ -70,12 +70,14 @@ function game() {
     let playerWinCount = 0;
     let computerWinCount = 0;
 
-    console.log("Welcome to a game of Rock Paper Scissors")
+    console.log("Welcome to a game of Rock Paper Scissors!")
 
     for (let i = 0; i < 5; i++) {
-        let userInput = correctCase(prompt("Enter 'Rock', 'Paper', or 'Scissors'."));
+        let userInput = prompt("Enter 'Rock', 'Paper', or 'Scissors'.");
+        if (userInput===null) return;
         let computerSelection = getComputerChoice();
-        let resultString = playRound(userInput, computerSelection);
+        let resultString = playRound(correctCase(userInput), computerSelection);
+        console.log(resultString);
         let resultChar = resultString.slice(4, 5);
         if (resultChar==='G') {
             i--;

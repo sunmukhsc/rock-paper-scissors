@@ -38,9 +38,23 @@ function getComputerChoice() {
 
 //Function playRound plays a round of rps given playerSelection(case-insensitive) and computerSelection and then returns the winner as a string
     //Correct case of playerSelection
-    //While keepGoing is true:
-       //if playerSelection equals computerSelection, try again
-      //otherwise return the correct string corresponding to the winner, change keepGoing to false
+    //return the correct string corresponding to the winner
+function playRound(playerSelection, computerSelection) {
+    let playerSelectionCased = correctCase(playerSelection);
+    if (playerSelection===computerSelection) {
+                    return "Tie Game! Try Again";
+    } else if (playerSelection==='Rock' && computerSelection==='Scissors' ||
+               playerSelection==='Paper' && computerSelection==='Rock' ||
+               playerSelection==='Scissors' && computerSelection==='Paper') {
+                    return `You Win! ${playerSelection} beats ${computerSelection}`;
+    } else if (computerSelection==='Rock' && playerSelection==='Scissors' ||
+               computerSelection==='Paper' && playerSelection==='Rock' ||
+               computerSelection==='Scissors' && playerSelection==='Paper') {
+                    return `You Lose! ${computerSelection} beats ${playerSelection}`;
+    } else {
+                    return 'Error';
+    }
+}
     
 //Function game plays a 5 round game and displays winner/loser at end.
     //initialize playerWinCount and computerWinCount
@@ -48,13 +62,14 @@ function getComputerChoice() {
         //Get input from user
         //Get computer's choice
         //Call playRound function, display returned string
+        //if tie, decrement loop counter variable
         //if player won increment playerWinCount, otherwise increment computerWinCount
     //if playerWinCount is more than computerWinCount, display that Player Wins
     //otherwise display that computer wins
 
 //Call game function
 
-console.log("Hello World");
+//console.log("Hello World");
     </script>
 
 </html>

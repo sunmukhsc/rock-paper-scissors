@@ -25,6 +25,7 @@ function correctCase(inputString) {
     //if number is 0 return 'Rock', 1 return 'Paper', 2 return 'Scissors'
 function getComputerChoice() {
     randNum = Math.floor(Math.random() * 3);
+
     if (randNum===0) {
         return 'Rock';
     } else if (randNum===1) {
@@ -32,7 +33,7 @@ function getComputerChoice() {
     } else if (randNum===2) {
         return 'Scissors';
     } else {
-        return 'Error';
+        return 'getComputerChoice() Error';
     }
 }
 
@@ -40,7 +41,6 @@ function getComputerChoice() {
     //Correct case of playerSelection
     //return the correct string corresponding to the winner
 function playRound(playerSelection, computerSelection) {
-    playerSelection = correctCase(playerSelection);
     if (playerSelection===computerSelection) {
                     return "Tie Game! Try Again";
     } else if (playerSelection==='Rock' && computerSelection==='Scissors' ||
@@ -52,7 +52,7 @@ function playRound(playerSelection, computerSelection) {
                computerSelection==='Scissors' && playerSelection==='Paper') {
                     return `You Lose! ${computerSelection} beats ${playerSelection}`;
     } else {
-                    return 'Error';
+                    return 'playRound() Error';
     }
 }
     
@@ -66,8 +66,39 @@ function playRound(playerSelection, computerSelection) {
         //if player won increment playerWinCount, otherwise increment computerWinCount
     //if playerWinCount is more than computerWinCount, display that Player Wins
     //otherwise display that computer wins
+function game() {
+    let playerWinCount = 0;
+    let computerWinCount = 0;
+
+    console.log("Welcome to a game of Rock Paper Scissors")
+
+    for (let i = 0; i < 5; i++) {
+        let userInput = correctCase(prompt("Enter 'Rock', 'Paper', or 'Scissors'."));
+        let computerSelection = getComputerChoice();
+        let resultString = playRound(userInput, computerSelection);
+        let resultChar = resultString.slice(4, 5);
+        if (resultChar==='G') {
+            i--;
+        } else if (resultChar==='W') {
+            playerWinCount++;
+        } else if (resultChar==='L') {
+            computerWinCount++;
+        } else {
+            console.log(`game() loop Error, iteration ${i}`)
+        }
+    }
+    if (playerWinCount===computerWinCount) {
+        console.log("game() Error");
+    } else if (playerWinCount > computerWinCount) {
+        console.log(`You win the game! You won ${playerWinCount} out of 5 rounds.`);
+    } else {
+        console.log(`You lose the game! You only won ${playerWinCount} out of 5 rounds.`);
+    }
+
+}
 
 //Call game function
+game();
 
 //console.log(playRound('SCISSors', getComputerChoice()));
     </script>

@@ -7,9 +7,13 @@
     </head>
 
     <body>
-        <button id="rock">Rock</button>
-        <button id="paper">Paper</button>
-        <button id="scissors">Scissors</button>
+        <div class="buttons">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
+
+        <div class="results"></div>
     </body>
     
     <script>
@@ -46,17 +50,17 @@ function getComputerChoice() {
     //return the correct string corresponding to the winner
 function playRound(playerSelection, computerSelection) {
     if (playerSelection===computerSelection) {
-                    console.log("Tie Game! Try Again");
+                    resultDiv.textContent = "Tie Game! Try Again";
     } else if (playerSelection==='Rock' && computerSelection==='Scissors' ||
                playerSelection==='Paper' && computerSelection==='Rock' ||
                playerSelection==='Scissors' && computerSelection==='Paper') {
-                    console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+                    resultDiv.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
     } else if (computerSelection==='Rock' && playerSelection==='Scissors' ||
                computerSelection==='Paper' && playerSelection==='Rock' ||
                computerSelection==='Scissors' && playerSelection==='Paper') {
-                    console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
+                    resultDiv.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
     } else {
-                    console.log('playRound() Error');
+                    resultDiv.textContent = 'playRound() Error';
     }
 }
     
@@ -109,6 +113,7 @@ function playRound(playerSelection, computerSelection) {
 const rockBtn = document.querySelector('#rock');
 const paperBtn = document.querySelector('#paper');
 const scissorsBtn = document.querySelector('#scissors');
+const resultDiv = document.querySelector('.results');
 
 rockBtn.addEventListener('click', () => {
     playRound('Rock', getComputerChoice());

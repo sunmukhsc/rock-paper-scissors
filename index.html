@@ -6,7 +6,11 @@
         <title>Rock Paper Scissors</title>
     </head>
 
-    <body></body>
+    <body>
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </body>
     
     <script>
 
@@ -42,17 +46,17 @@ function getComputerChoice() {
     //return the correct string corresponding to the winner
 function playRound(playerSelection, computerSelection) {
     if (playerSelection===computerSelection) {
-                    return "Tie Game! Try Again";
+                    console.log("Tie Game! Try Again");
     } else if (playerSelection==='Rock' && computerSelection==='Scissors' ||
                playerSelection==='Paper' && computerSelection==='Rock' ||
                playerSelection==='Scissors' && computerSelection==='Paper') {
-                    return `You Win! ${playerSelection} beats ${computerSelection}`;
+                    console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
     } else if (computerSelection==='Rock' && playerSelection==='Scissors' ||
                computerSelection==='Paper' && playerSelection==='Rock' ||
                computerSelection==='Scissors' && playerSelection==='Paper') {
-                    return `You Lose! ${computerSelection} beats ${playerSelection}`;
+                    console.log(`You Lose! ${computerSelection} beats ${playerSelection}`);
     } else {
-                    return 'playRound() Error';
+                    console.log('playRound() Error');
     }
 }
     
@@ -66,7 +70,7 @@ function playRound(playerSelection, computerSelection) {
         //if player won increment playerWinCount, otherwise increment computerWinCount
     //if playerWinCount is more than computerWinCount, display that Player Wins
     //otherwise display that computer wins
-function game() {
+/*function game() {
     let playerWinCount = 0;
     let computerWinCount = 0;
 
@@ -97,10 +101,26 @@ function game() {
         console.log(`You lose the game! You only won ${playerWinCount} out of 5 rounds.`);
     }
 
-}
+}*/
 
 //Call game function
-game();
+//game();
+
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper');
+const scissorsBtn = document.querySelector('#scissors');
+
+rockBtn.addEventListener('click', () => {
+    playRound('Rock', getComputerChoice());
+});
+
+paperBtn.addEventListener('click', () => { 
+    playRound('Paper', getComputerChoice());
+});
+
+scissorsBtn.addEventListener('click', () => { 
+    playRound('Scissors', getComputerChoice())
+});
 
 //console.log(playRound('SCISSors', getComputerChoice()));
     </script>

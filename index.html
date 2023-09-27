@@ -88,9 +88,6 @@
     <script>
 
 //Function correctCase takes a string and returns it with first letter capital and the rest lowercase
-    //Separate first letter and make it uppercase. Assign to variable
-    //Separate the rest and make lowercase. Assign
-    //Return combined string
 function correctCase(inputString) {
     let firstLetter = inputString.slice(0, 1);
     let remainder = inputString.slice(1);
@@ -98,8 +95,6 @@ function correctCase(inputString) {
 }
 
 //Function getComputerChoice randomly returns 'Rock' 'Paper' or 'Scissors'
-    //Multiply the random function by 3 to randomly get 0 1 or 2. Take floor and assign to variable
-    //if number is 0 return 'Rock', 1 return 'Paper', 2 return 'Scissors'
 function getComputerChoice() {
     randNum = Math.floor(Math.random() * 3);
 
@@ -114,9 +109,7 @@ function getComputerChoice() {
     }
 }
 
-//Function playRound plays a round of rps given playerSelection(case-insensitive) and computerSelection and then returns the winner as a string
-    //Correct case of playerSelection
-    //return the correct string corresponding to the winner
+//Function playRound plays a round of rps given playerSelection(case-insensitive) and computerSelection and then updates DOM with result
 function playRound(playerSelection, computerSelection) {
     if (playerSelection===computerSelection) {
                     resultDiv.textContent = "Tie Game! Try Again";
@@ -136,53 +129,10 @@ function playRound(playerSelection, computerSelection) {
                     resultDiv.textContent = 'playRound() Error';
     }
 }
-    
-//Function game plays a 5 round game and displays winner/loser at end.
-    //initialize playerWinCount and computerWinCount
-    //Loop 5 times
-        //Get input from user
-        //Get computer's choice
-        //Call playRound function, display returned string
-        //if tie, decrement loop counter variable
-        //if player won increment playerWinCount, otherwise increment computerWinCount
-    //if playerWinCount is more than computerWinCount, display that Player Wins
-    //otherwise display that computer wins
-/*function game() {
-    let playerWinCount = 0;
-    let computerWinCount = 0;
 
-    console.log("Welcome to a game of Rock Paper Scissors!")
-
-    for (let i = 0; i < 5; i++) {
-        let userInput = prompt("Enter 'Rock', 'Paper', or 'Scissors'.");
-        if (userInput===null) return;
-        let computerSelection = getComputerChoice();
-        let resultString = playRound(correctCase(userInput), computerSelection);
-        console.log(resultString);
-        let resultChar = resultString.slice(4, 5);
-        if (resultChar==='G') {
-            i--;
-        } else if (resultChar==='W') {
-            playerWinCount++;
-        } else if (resultChar==='L') {
-            computerWinCount++;
-        } else {
-            console.log(`game() loop Error, iteration ${i}`)
-        }
-    }
-    if (playerWinCount===computerWinCount) {
-        console.log("game() Error");
-    } else if (playerWinCount > computerWinCount) {
-        console.log(`You win the game! You won ${playerWinCount} out of 5 rounds.`);
-    } else {
-        console.log(`You lose the game! You only won ${playerWinCount} out of 5 rounds.`);
-    }
-
-}*/
-
+//Plays a round, announcing winner if 5 rounds are won
 function game(playerChoice) {
     if (playerWinCount===5 || computerWinCount===5){
-        //alert('You Win the Game!');
         playerWinCount = 0;
         computerWinCount = 0;
         playerWins.textContent = 0;

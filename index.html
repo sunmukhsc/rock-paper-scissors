@@ -180,11 +180,29 @@ function playRound(playerSelection, computerSelection) {
 
 }*/
 
-//Call game function
-//game();
+function game(playerChoice) {
+    if (playerWinCount===5 || computerWinCount===5){
+        //alert('You Win the Game!');
+        playerWinCount = 0;
+        computerWinCount = 0;
+        playerWins.textContent = 0;
+        computerWins.textContent = 0;
+        resultDiv.style.fontWeight = 'normal';
+        resultDiv.style.color = 'white';
+        resultDiv.textContent = 'Choose a weapon!';
+        return;
+    }
+    playRound(playerChoice, getComputerChoice());
 
-function game() {
-    
+    if (playerWinCount===5){
+        resultDiv.textContent = "You Win the Game!";
+        resultDiv.style.fontWeight = '800';
+        resultDiv.style.color = 'yellow';
+    } else if (computerWinCount===5) {
+        resultDiv.textContent = "You Lose the Game!";
+        resultDiv.style.fontWeight = '800';
+        resultDiv.style.color = 'red';
+    }
 }
 
 const rockBtn = document.querySelector('#rock');
@@ -198,18 +216,17 @@ let playerWinCount = 0;
 let computerWinCount = 0;
 
 rockBtn.addEventListener('click', () => {
-    playRound('Rock', getComputerChoice());
+    game('Rock');
 });
 
 paperBtn.addEventListener('click', () => { 
-    playRound('Paper', getComputerChoice());
+    game('Paper');
 });
 
 scissorsBtn.addEventListener('click', () => { 
-    playRound('Scissors', getComputerChoice())
+    game('Scissors');
 });
 
-//console.log(playRound('SCISSors', getComputerChoice()));
     </script>
 
 </html>

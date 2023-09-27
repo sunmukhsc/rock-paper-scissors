@@ -7,15 +7,84 @@
     </head>
 
     <body>
+        <h1 class="title">Rock Paper Scissors</h1>
+
         <div class="buttons">
             <button id="rock">Rock</button>
             <button id="paper">Paper</button>
             <button id="scissors">Scissors</button>
         </div>
 
-        <div class="results"></div>
+        <div class="results">Choose a weapon!</div>
+
+        <div class="win-count">
+            <div class="box">
+                <div class="number" id="player-wins">0</div>
+                <div class="win-title">Player Wins</div>
+            </div>
+            <div class="box">
+                <div class="number" id="computer-wins">0</div>
+                <div class="win-title">Computer Wins</div>
+            </div>
+        </div>
     </body>
     
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgb(59, 59, 65);
+            color: whitesmoke;
+            font-family: 'Roboto Light', sans-serif;
+            gap: 25px
+        }
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            font-family: 'Roboto Light', sans-serif;
+            font-size: 20px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 15px;
+            transition-duration: 0.4s;
+        }
+
+        button:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+            cursor:pointer;
+        }
+
+        .win-count {
+            display: flex;
+            gap: 20px;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 20px 0px;
+            background-color: black;
+            border-radius: 18px;
+            min-width: 150px;
+            min-height: 100px;
+        }
+
+        .number {
+            margin-bottom: 20px;
+            font-size: 40px;
+        }
+
+    </style>
+
     <script>
 
 //Function correctCase takes a string and returns it with first letter capital and the rest lowercase
@@ -55,10 +124,14 @@ function playRound(playerSelection, computerSelection) {
                playerSelection==='Paper' && computerSelection==='Rock' ||
                playerSelection==='Scissors' && computerSelection==='Paper') {
                     resultDiv.textContent = `You Win! ${playerSelection} beats ${computerSelection}`;
+                    playerWinCount++;
+                    playerWins.textContent = playerWinCount;
     } else if (computerSelection==='Rock' && playerSelection==='Scissors' ||
                computerSelection==='Paper' && playerSelection==='Rock' ||
                computerSelection==='Scissors' && playerSelection==='Paper') {
                     resultDiv.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
+                    computerWinCount++;
+                    computerWins.textContent = computerWinCount;
     } else {
                     resultDiv.textContent = 'playRound() Error';
     }
@@ -110,10 +183,19 @@ function playRound(playerSelection, computerSelection) {
 //Call game function
 //game();
 
+function game() {
+    
+}
+
 const rockBtn = document.querySelector('#rock');
 const paperBtn = document.querySelector('#paper');
 const scissorsBtn = document.querySelector('#scissors');
 const resultDiv = document.querySelector('.results');
+const playerWins = document.querySelector('#player-wins');
+const computerWins = document.querySelector('#computer-wins');
+
+let playerWinCount = 0;
+let computerWinCount = 0;
 
 rockBtn.addEventListener('click', () => {
     playRound('Rock', getComputerChoice());
